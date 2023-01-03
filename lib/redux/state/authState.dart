@@ -36,4 +36,8 @@ class AuthState {
     userId:
     state.userId;
   }
+
+  String getUserDesc(){
+    return '${firstName} ${lastName}'; 
+  }
 }

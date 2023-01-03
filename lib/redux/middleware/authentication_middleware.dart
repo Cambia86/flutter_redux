@@ -8,6 +8,9 @@ import '../model/app_state.dart';
 import '../model/login_info.dart';
 
 class AuthenticationMiddleware {
+
+
+
   static void fetchAuthMiddleware(
       Store<AppState> store, action, NextDispatcher next) {
     if (action is LoginOnlineAction) {

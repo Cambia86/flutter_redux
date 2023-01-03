@@ -3,22 +3,37 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_project/pages/detail_page.dart';
 import 'package:flutter_redux_project/pages/drawer_widget.dart';
 import 'package:flutter_redux_project/pages/login_page.dart';
+import 'package:flutter_redux_project/redux/middleware/authentication_middleware.dart';
 import 'package:flutter_redux_project/redux/model/app_state.dart';
+import 'package:flutter_redux_project/redux/reducers.dart';
 import 'package:redux/redux.dart';
-import 'package:redux_thunk/redux_thunk.dart';
 
-import './redux/middleware/time_middleware.dart';
-import 'redux/reducer/time_reducer.dart';
+
+
+
+Store<AppState> getStoreWithParams() {
+  var store = Store<AppState>(appReducer,
+      initialState: AppState.initial(),
+      middleware: [
+        AuthenticationMiddleware.fetchAuthMiddleware,
+      ]);
+  return store;
+}
+
+
 
 Future<void> main() async {
-  runApp(MyApp());
+  final Store<AppState> store = getStoreWithParams();
+  runApp(MyApp(store: store));
 }
 
 typedef FetchTime = void Function();
 
 class MyApp extends StatelessWidget {
-  final store = Store(reducer,
-      initialState: AppState.initialState(), middleware: [thunkMiddleware]);
+   final Store<AppState> store;
+   const MyApp({required this.store});
+  // final store = Store(reducer,
+  //     initialState: AppState.initialState(), middleware: [thunkMiddleware]);
 
   // This widget is the root of your application.
   @override
@@ -55,55 +70,55 @@ class _MyHomePageState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("widget.title"),
+        title: Text("app test"),
       ),
       drawer: drawer_widget(),
       body: Center(
         child: Container(
           height: 400.0,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // display time and location
-                StoreConnector<AppState, AppState>(
-                  converter: (store) => store.state,
-                  builder: (_, state) {
-                    return Text(
-                      'The time in ${state.location} is ${state.time}',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          fontSize: 40.0, fontWeight: FontWeight.bold),
-                    );
-                  },
-                ),
-                // fetch time button
-                StoreConnector<AppState, FetchTime>(
-                  converter: (store) => () => store.dispatch(fetchTime),
-                  builder: (_, fetchTimeCallback) {
-                    return SizedBox(
-                      width: 250,
-                      height: 50,
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.amber),
-                              textStyle: MaterialStateProperty.all(
-                                TextStyle(
-                                  color: Colors.brown,
-                                ),
-                              )),
-                          onPressed: fetchTimeCallback,
-                          child: const Text(
-                            "Click to fetch time",
-                            style: TextStyle(
-                                color: Colors.brown,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 25),
-                          )),
-                    );
-                  },
-                )
-              ]),
+          // child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       // display time and location
+          //       // StoreConnector<AppState, AppState>(
+          //       //   converter: (store) => store.state,
+          //       //   builder: (_, state) {
+          //       //     return Text(
+          //       //       'The time in ${state.location} is ${state.time}',
+          //       //       textAlign: TextAlign.center,
+          //       //       style: const TextStyle(
+          //       //           fontSize: 40.0, fontWeight: FontWeight.bold),
+          //       //     );
+          //       //   },
+          //       // ),
+          //       // fetch time button
+          //       // StoreConnector<AppState, FetchTime>(
+          //       //   converter: (store) => () => store.dispatch(fetchTime),
+          //       //   builder: (_, fetchTimeCallback) {
+          //       //     return SizedBox(
+          //       //       width: 250,
+          //       //       height: 50,
+          //       //       child: ElevatedButton(
+          //       //           style: ButtonStyle(
+          //       //               backgroundColor:
+          //       //                   MaterialStateProperty.all(Colors.amber),
+          //       //               textStyle: MaterialStateProperty.all(
+          //       //                 TextStyle(
+          //       //                   color: Colors.brown,
+          //       //                 ),
+          //       //               )),
+          //       //           onPressed: fetchTimeCallback,
+          //       //           child: const Text(
+          //       //             "Click to fetch time",
+          //       //             style: TextStyle(
+          //       //                 color: Colors.brown,
+          //       //                 fontWeight: FontWeight.w600,
+          //       //                 fontSize: 25),
+          //       //           )),
+          //       //     );
+          //       //   },
+          //       // )
+          //     ]),
         ),
       ),
     );

@@ -1,6 +1,4 @@
-
-class LoginInfo{
-
+class LoginInfo {
   String? username;
   String? password;
   String? token;
@@ -8,23 +6,31 @@ class LoginInfo{
   String? lastName;
   int? userId;
   bool areCredentialsSaved;
- 
+
   String loginError;
   String? emailRecupero;
-  LoginInfo({ this.username,  this.password,String? firstName,String? lastName,  String? token, int?  userId, bool? areCredentialsSaved,  String? loginError, String? emailRecupero})
-  :
-  areCredentialsSaved= areCredentialsSaved ?? true,
-  loginError= loginError ?? "",
-  emailRecupero=emailRecupero??"";
-
+  LoginInfo(
+      {this.username,
+      this.password,
+      this.firstName,
+      this.lastName,
+      this.token,
+      this.userId,
+      bool? areCredentialsSaved,
+      String? loginError,
+      String? emailRecupero})
+      : areCredentialsSaved = areCredentialsSaved ?? true,
+        loginError = loginError ?? "",
+        emailRecupero = emailRecupero ?? "";
 
   factory LoginInfo.fromJson(Map<String, dynamic> json) {
     return LoginInfo(
-      userId:  json['id'],
       username: json['username'],
+      password: json['password'],
       firstName: json['firstName'],
-       lastName: json['lastName'],
+      lastName: json['lastName'],
       token: json['token'],
+      userId: json['id'],
     );
   }
 
@@ -32,7 +38,7 @@ class LoginInfo{
     return {
       'username': username,
       'password': password,
-      'userId':userId,
+      'userId': userId,
       'token': token,
       // 'areCredentialsSaved': areCredentialsSaved,
     };

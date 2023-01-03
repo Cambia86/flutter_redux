@@ -15,6 +15,7 @@ AuthState authReducer(AuthState prevState, dynamic action) {
      newState.firstName= action.loginInfo.firstName;
      newState.lastName= action.loginInfo.lastName;
      newState.token= action.loginInfo.token;
+       newState.username= action.loginInfo.username;
   }
   return newState;
 }

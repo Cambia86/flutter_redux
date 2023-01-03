@@ -12,11 +12,12 @@ class AuthenticationMiddleware {
       Store<AppState> store, action, NextDispatcher next) {
     if (action is LoginOnlineAction) {
       AuthenticationMiddleware.login(loginInfo: action.loginInfo).then((loginInfo) {
-        if (loginInfo != null) {
+        if (loginInfo   != null) {
           store.dispatch(LoginOnlineActionSuccess(loginInfo: loginInfo));
         }
       });
     }
+   next(action);
   }
 
   static Future<LoginInfo?> login({required LoginInfo loginInfo}) async {

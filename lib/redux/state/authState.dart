@@ -7,6 +7,9 @@ class AuthState {
   String? firstName;
   String? lastName;
   int? userId;
+  bool isLoading=false;
+  String errorCode="";
+  String errorMessage="";
 
   AuthState(
       {this.username,

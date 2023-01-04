@@ -47,234 +47,261 @@ class _LoginPageState extends State<LoginPage> {
               title: Text("widget.title"),
             ),
             drawer: drawer_widget(),
-            body: Column(
-              children: [
-                Form(
-                    key: _formKey,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextFormField(
-                            style: TextStyle(fontSize: 20),
-                            // Theme.of(context)
-                            //     .textTheme
-                            //     .displaySmall!
-                            //     .copyWith(color: Colors.black),
-                            keyboardType: TextInputType.text,
-                            controller: userText,
-                            cursorColor: Colors.black,
-                            decoration: InputDecoration(
-                              // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                              // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ?  ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                              // border: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                              // floatingLabelBehavior: FloatingLabelBehavior.always,
-                              // hintText: 'Insert your username',
-                              // hintStyle: Theme.of(context).textTheme.displaySmall!.copyWith(color: Colors.black),
+            body: StoreConnector<AppState, AppState>(
+              converter: (store) => store.state,
+              builder: (context, state) {
+                return state.authState.isLoading == true
+                    ? Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        child: const Align(
+                          alignment: Alignment.center,
+                          child: CircularProgressIndicator(),
+                        ),
+                      )
+                    : Column(children: [
+                        Form(
+                            key: _formKey,
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextFormField(
+                                    style: TextStyle(fontSize: 20),
+                                    // Theme.of(context)
+                                    //     .textTheme
+                                    //     .displaySmall!
+                                    //     .copyWith(color: Colors.black),
+                                    keyboardType: TextInputType.text,
+                                    controller: userText,
+                                    cursorColor: Colors.black,
+                                    decoration: InputDecoration(
+                                      // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
+                                      // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ?  ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
+                                      // border: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
+                                      // floatingLabelBehavior: FloatingLabelBehavior.always,
+                                      // hintText: 'Insert your username',
+                                      // hintStyle: Theme.of(context).textTheme.displaySmall!.copyWith(color: Colors.black),
 
-                              labelText: "Username",
-                              labelStyle: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                      color: (mystore
-                                                  .state.authState.username !=
-                                              null
-                                          // && mystore.state.authState.username!.loginError !=
-                                          //     ""
-                                          )
-                                          ? Colors.red
-                                          : Colors.blue),
-                              prefixIcon: Icon(
-                                Icons.person,
-                                size: 20,
-                                color: (mystore.state.authState.username != null
-                                    // && mystore.state.authState.username.loginError != ""
-                                    )
-                                    ? Colors.red
-                                    : Colors.blue,
-                              ),
-                            ),
-                            onChanged: (value) {},
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Campo obbligatorio';
-                              }
-                              return null;
-                            },
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            style: TextStyle(fontSize: 20),
-                            obscureText: _viewpass,
-                            controller: passwordText,
-                            cursorColor: Colors.black,
-                            decoration: InputDecoration(
-                              // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                              // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                              // border: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                              // floatingLabelBehavior: FloatingLabelBehavior.always,
-                              labelText: 'Password',
-                              labelStyle: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                      color: (mystore
-                                                  .state.authState.password !=
-                                              null
-                                          //  &&   mystore.state.authState.password!.loginError !=""
-                                          )
-                                          ? Colors.red
-                                          : Colors.blue),
-                              // hintText: 'Enter your password',
-                              // hintStyle: Theme.of(context)
-                              //     .textTheme
-                              //     .displaySmall!
-                              //     .copyWith(color: Colors.black),
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                size: 20,
-                                color: (mystore.state.authState.password != null
-                                    // &&  mystore.state.loginInfo!.loginError != ""
-                                    )
-                                    ? Colors.red
-                                    : Colors.blue,
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: view,
-                                icon: Icon(
-                                  _viewpass
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            onChanged: (value) {},
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Campo obbligatorio';
-                              }
-                              return null;
-                            },
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          // Text(
-                          //   mystore.state.loginInfo != null
-                          //       ? mystore.state.loginInfo!.loginError
-                          //       : "",
-                          //   style: Theme.of(context)
-                          //       .textTheme
-                          //       .displaySmall!
-                          //       .copyWith(color: Colors.black),
-                          //   textAlign: TextAlign.start,
-                          // ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Row(
-                              //   children: [
-                              //     FlutterSwitch(
-                              //       width: 45.0,
-                              //       height: 30.0,
-                              //       toggleColor: Colors.white,
-                              //       activeColor: const Color(0xFFE0E0E0),
-                              //       valueFontSize: 25.0,
-                              //       toggleSize: 25.0,
-                              //       value: true,
-                              //       borderRadius: 30.0,
-                              //       padding: 0,
-                              //       showOnOff: false,
-                              //       onToggle: (val) {
-                              //         // LoginInfo info = LoginInfo(username: userText.text, password: passwordText.text, areCredentialsSaved: val);
-                              //         // mystore.dispatch(LoginSwitchAction(loginInfo: info));
-                              //       },
-                              //     ),
-                              //     const SizedBox(
-                              //       width: 10,
-                              //     ),
-                              //     Text("Salva dati di accesso", style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Colors.black,),),
-                              //   ],
-                              // ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 20, top: 10),
-                                child: ButtonTheme(
-                                  height: 40.0,
-                                  child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                        Colors.blue,
+                                      labelText: "Username",
+                                      labelStyle: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(
+                                              color: (mystore.state.authState
+                                                          .username !=
+                                                      null
+                                                  // && mystore.state.authState.username!.loginError !=
+                                                  //     ""
+                                                  )
+                                                  ? Colors.red
+                                                  : Colors.blue),
+                                      prefixIcon: Icon(
+                                        Icons.person,
+                                        size: 20,
+                                        color: (mystore
+                                                    .state.authState.username !=
+                                                null
+                                            // && mystore.state.authState.username.loginError != ""
+                                            )
+                                            ? Colors.red
+                                            : Colors.blue,
                                       ),
-                                      elevation: MaterialStateProperty.all(0),
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.0),
+                                    ),
+                                    onChanged: (value) {},
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Campo obbligatorio';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  TextFormField(
+                                    style: TextStyle(fontSize: 20),
+                                    obscureText: _viewpass,
+                                    controller: passwordText,
+                                    cursorColor: Colors.black,
+                                    decoration: InputDecoration(
+                                      // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
+                                      // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
+                                      // border: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
+                                      // floatingLabelBehavior: FloatingLabelBehavior.always,
+                                      labelText: 'Password',
+                                      labelStyle: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(
+                                              color: (mystore.state.authState
+                                                          .password !=
+                                                      null
+                                                  //  &&   mystore.state.authState.password!.loginError !=""
+                                                  )
+                                                  ? Colors.red
+                                                  : Colors.blue),
+                                      // hintText: 'Enter your password',
+                                      // hintStyle: Theme.of(context)
+                                      //     .textTheme
+                                      //     .displaySmall!
+                                      //     .copyWith(color: Colors.black),
+                                      prefixIcon: Icon(
+                                        Icons.lock,
+                                        size: 20,
+                                        color: (mystore
+                                                    .state.authState.password !=
+                                                null
+                                            // &&  mystore.state.loginInfo!.loginError != ""
+                                            )
+                                            ? Colors.red
+                                            : Colors.blue,
+                                      ),
+                                      suffixIcon: IconButton(
+                                        onPressed: view,
+                                        icon: Icon(
+                                          _viewpass
+                                              ? Icons.visibility_off
+                                              : Icons.visibility,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        LoginInfo info = LoginInfo(
-                                            username: userText.text,
-                                            password: passwordText.text,
-                                            areCredentialsSaved: false);
-                                        login(context, mystore, info);
+                                    onChanged: (value) {},
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Campo obbligatorio';
                                       }
-                                      // test(context, mystore,info);
+                                      return null;
                                     },
-                                    child: const Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 44),
-                                      child: Text(
-                                        'ACCEDI',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
                                   ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 9,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  // Navigator.pushReplacementNamed(context, PasswordDimenticataPage.routeName);
-                                },
-                                child: Text(
-                                  "Password dimenticata?",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(
-                                        color: Colors.black,
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  // Text(
+                                  //   mystore.state.loginInfo != null
+                                  //       ? mystore.state.loginInfo!.loginError
+                                  //       : "",
+                                  //   style: Theme.of(context)
+                                  //       .textTheme
+                                  //       .displaySmall!
+                                  //       .copyWith(color: Colors.black),
+                                  //   textAlign: TextAlign.start,
+                                  // ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      // Row(
+                                      //   children: [
+                                      //     FlutterSwitch(
+                                      //       width: 45.0,
+                                      //       height: 30.0,
+                                      //       toggleColor: Colors.white,
+                                      //       activeColor: const Color(0xFFE0E0E0),
+                                      //       valueFontSize: 25.0,
+                                      //       toggleSize: 25.0,
+                                      //       value: true,
+                                      //       borderRadius: 30.0,
+                                      //       padding: 0,
+                                      //       showOnOff: false,
+                                      //       onToggle: (val) {
+                                      //         // LoginInfo info = LoginInfo(username: userText.text, password: passwordText.text, areCredentialsSaved: val);
+                                      //         // mystore.dispatch(LoginSwitchAction(loginInfo: info));
+                                      //       },
+                                      //     ),
+                                      //     const SizedBox(
+                                      //       width: 10,
+                                      //     ),
+                                      //     Text("Salva dati di accesso", style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Colors.black,),),
+                                      //   ],
+                                      // ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, top: 10),
+                                        child: ButtonTheme(
+                                          height: 40.0,
+                                          child: ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                Colors.blue,
+                                              ),
+                                              elevation:
+                                                  MaterialStateProperty.all(0),
+                                              shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                ),
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              if (_formKey.currentState!
+                                                  .validate()) {
+                                                LoginInfo info = LoginInfo(
+                                                    username: userText.text,
+                                                    password: passwordText.text,
+                                                    areCredentialsSaved: false);
+                                                login(context, mystore, info);
+                                              }
+                                              // test(context, mystore,info);
+                                            },
+                                            child: const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 44),
+                                              child: Text(
+                                                'ACCEDI',
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ])),
-                Container(
-                  child: StoreConnector<AppState, AppState>(
-                      converter: (store) => store.state,
-                      builder: (context, state) {
-                        return Text( state.authState.username !=null ?state.authState.username!:"");
-                      }),
-                )
-              ],
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 9,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          // Navigator.pushReplacementNamed(context, PasswordDimenticataPage.routeName);
+                                        },
+                                        child: Text(
+                                          "Password dimenticata?",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall!
+                                              .copyWith(
+                                                color: Colors.black,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ])),
+                        Container(
+                          child: StoreConnector<AppState, AppState>(
+                              converter: (store) => store.state,
+                              builder: (context, state) {
+                                return Text(state.authState.username != null
+                                    ? state.authState.username!
+                                    : "");
+                              }),
+                        ),
+                        
+                        state.authState.errorCode!=null ?
+                        Container(child: Text(state.authState.errorMessage)) :
+                        Container(),
+                      ]);
+              },
             ));
       },
     );
@@ -285,7 +312,8 @@ class _LoginPageState extends State<LoginPage> {
     //login online e sync
     store.dispatch(LoginOnlineAction(
         loginInfo: loginInfo,
-        onSuccess: (res) {
+        onSuccess: () {
+             Navigator.pushNamed(context, '/');
           //  loadDataAndGoHome(store);
         }));
   }

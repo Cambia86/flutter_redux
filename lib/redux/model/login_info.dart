@@ -1,3 +1,4 @@
+
 class LoginInfo {
   String? username;
   String? password;
@@ -6,6 +7,9 @@ class LoginInfo {
   String? lastName;
   int? userId;
   bool areCredentialsSaved;
+  String? errorCode;
+  String? errorMessage;
+  String? statusCode;
 
   String loginError;
   String? emailRecupero;
@@ -16,6 +20,7 @@ class LoginInfo {
       this.lastName,
       this.token,
       this.userId,
+      this.errorMessage,
       bool? areCredentialsSaved,
       String? loginError,
       String? emailRecupero})
@@ -31,6 +36,7 @@ class LoginInfo {
       lastName: json['lastName'],
       token: json['token'],
       userId: json['id'],
+       errorMessage: json['errorMessage'],
     );
   }
 

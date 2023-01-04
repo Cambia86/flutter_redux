@@ -4,23 +4,22 @@ import 'package:flutter_redux_project/pages/detail_page.dart';
 import 'package:flutter_redux_project/pages/drawer_widget.dart';
 import 'package:flutter_redux_project/pages/login_page.dart';
 import 'package:flutter_redux_project/redux/middleware/authentication_middleware.dart';
+import 'package:flutter_redux_project/redux/middleware/championship_middleware.dart';
 import 'package:flutter_redux_project/redux/model/app_state.dart';
 import 'package:flutter_redux_project/redux/reducers.dart';
 import 'package:redux/redux.dart';
 
-
-
+import 'pages/championship_list_page.dart';
 
 Store<AppState> getStoreWithParams() {
   var store = Store<AppState>(appReducer,
       initialState: AppState.initial(),
       middleware: [
         AuthenticationMiddleware.fetchAuthMiddleware,
+        ChampionshipMiddleware.fetchChampionshipMiddleware
       ]);
   return store;
 }
-
-
 
 Future<void> main() async {
   final Store<AppState> store = getStoreWithParams();
@@ -30,8 +29,8 @@ Future<void> main() async {
 typedef FetchTime = void Function();
 
 class MyApp extends StatelessWidget {
-   final Store<AppState> store;
-   const MyApp({required this.store});
+  final Store<AppState> store;
+  const MyApp({required this.store});
   // final store = Store(reducer,
   //     initialState: AppState.initialState(), middleware: [thunkMiddleware]);
 
@@ -51,6 +50,7 @@ class MyApp extends StatelessWidget {
             '/': (context) => MyHomePage(),
             '/login': (context) => LoginPage(),
             '/details': (context) => DetailScreen(),
+            '/championship': (context) => ChampionshipPage(),
           },
         ));
   }
@@ -124,4 +124,3 @@ class _MyHomePageState extends State {
     );
   }
 }
-

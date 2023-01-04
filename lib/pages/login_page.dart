@@ -313,7 +313,7 @@ class _LoginPageState extends State<LoginPage> {
     store.dispatch(LoginOnlineAction(
         loginInfo: loginInfo,
         onSuccess: () {
-             Navigator.pushNamed(context, '/');
+            //  Navigator.pushNamed(context, '/');
           //  loadDataAndGoHome(store);
         }));
   }

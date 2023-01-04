@@ -18,9 +18,4 @@ class LoginOnlineActionFailure {
   final LoginInfo loginInfo;
 }
 
-// class LoginOnlineActionFailure {
-//   const LoginOnlineActionFailure({ required this.LoginInfo});
-//   final LoginInfo LoginInfo;
-// }
-
 

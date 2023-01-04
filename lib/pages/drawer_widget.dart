@@ -35,9 +35,9 @@ class drawer_widget extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('details'),
+            title: const Text('championship'),
             onTap: () {
-                Navigator.pushNamed(context, '/details');
+                Navigator.pushNamed(context, '/championship');
               // Update the state of the app.
               // ...
             },

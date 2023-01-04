@@ -27,7 +27,6 @@ class AuthenticationMiddleware {
 
   static Future<LoginInfo?> login({required LoginInfo loginInfo}) async {
     LoginInfo info;
-    // try {
     Response response = await post(Uri.parse('http://localhost:8080/api/login'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -42,17 +41,10 @@ class AuthenticationMiddleware {
       authinfo.errorCode = response.statusCode.toString();
       authinfo.statusCode = response.statusCode.toString();
       return authinfo;
-      // throw(loginInfo);
-      // throw Exception(
-      //   'Failed to login [${response.statusCode}] ${response.body}');
-      // Future.error('FooError');
-    } else {
+      } else {
       LoginInfo authinfo = LoginInfo.fromJson(jsonDecode(response.body));
        authinfo.statusCode = response.statusCode.toString();
       return authinfo;
     }
-    // } catch (e) {
-    // //  throw Exception(e);
-    // }
   }
 }

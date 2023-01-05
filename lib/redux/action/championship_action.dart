@@ -1,4 +1,6 @@
 
+import '../model/ChampionshipChart.dart';
+import '../model/MatchList.dart';
 import '../model/championship.dart';
 
 class GetChampionshipAction{
@@ -16,9 +18,35 @@ class GetChampionshipActionFailure {
   final Championship loginInfo;
 }
 
+class GetChampionshipChartAction{
+    const GetChampionshipChartAction();
+}
+
+class GetChampionshipChartActionSuccess {
+  const GetChampionshipChartActionSuccess({ required this.championshipChart});
+  final ChampionshipChartList championshipChart;
+}
+
+// class GetChampionshipChartActionFailure {
+//   const GetChampionshipActionFailure({ required this.loginInfo});
+//   final Championship loginInfo;
+// }
+
+class GetChampionshipMatchListAction{
+  const GetChampionshipMatchListAction({required this.championshipId,required this.seasonId});
+  final int championshipId;
+  final int seasonId;
+}
+
+class GetChampionshipMatchListActionSucces{
+   const GetChampionshipMatchListActionSucces({required this.matchList});
+  final MatchList matchList;
+}
+
 class SelectChampionshipAction {
-  const SelectChampionshipAction({ required this.selectedChampionship});
+  const SelectChampionshipAction({ required this.selectedChampionship, required this.onSuccess});
   final Championship selectedChampionship;
+     final Function onSuccess;
 }
 
 

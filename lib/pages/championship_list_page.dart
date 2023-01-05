@@ -89,7 +89,10 @@ class _ChampionshipPageState extends State<ChampionshipPage> {
                                 .championshipState.championshipList![index];
 
                             mystore.dispatch(SelectChampionshipAction(
-                                selectedChampionship: champ));
+                                selectedChampionship: champ,
+                                  onSuccess: () {
+                                     Navigator.pushNamed(context, '/championshipDetail');
+                                  }));
                           },
                         );
                       },

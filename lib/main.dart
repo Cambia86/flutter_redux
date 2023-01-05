@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_redux_project/pages/championship_detail_page.dart';
 import 'package:flutter_redux_project/pages/detail_page.dart';
 import 'package:flutter_redux_project/pages/drawer_widget.dart';
 import 'package:flutter_redux_project/pages/login_page.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
             '/login': (context) => LoginPage(),
             '/details': (context) => DetailScreen(),
             '/championship': (context) => ChampionshipPage(),
+            '/championshipDetail': (context) => ChampionshipDetailPage(),
           },
         ));
   }

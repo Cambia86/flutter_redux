@@ -5,8 +5,6 @@ class ChampionshipList{
 
  ChampionshipList(
       {required this.lstChampionship,required this.statusCode});
-
-
 }
 
 

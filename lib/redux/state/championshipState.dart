@@ -2,6 +2,7 @@ import 'package:flutter_redux_project/redux/model/championship.dart';
 
 class ChampionshipState {
   List<Championship>? championshipList;
+  Championship? currentChampionship;
 
   ChampionshipState({required this.championshipList});
 

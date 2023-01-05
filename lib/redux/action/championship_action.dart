@@ -16,4 +16,10 @@ class GetChampionshipActionFailure {
   final Championship loginInfo;
 }
 
+class SelectChampionshipAction {
+  const SelectChampionshipAction({ required this.selectedChampionship});
+  final Championship selectedChampionship;
+}
+
+
 

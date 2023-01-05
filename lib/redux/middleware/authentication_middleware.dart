@@ -44,7 +44,7 @@ class AuthenticationMiddleware {
       } else {
       LoginInfo authinfo = LoginInfo.fromJson(jsonDecode(response.body));
        authinfo.statusCode = response.statusCode.toString();
-      return authinfo;
+        return authinfo;
     }
   }
 }

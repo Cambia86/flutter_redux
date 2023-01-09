@@ -10,11 +10,21 @@ import '../redux/action/authentication_action.dart';
 import 'drawer_widget.dart';
 
 class LoginPage extends StatefulWidget {
+
+const LoginPage({Key? key}) :super(key:key);
+static const String routeName ='/login';
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  @override
+  void initState(){
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final Store<AppState> mystore = StoreProvider.of<AppState>(context);

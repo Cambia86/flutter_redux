@@ -10,6 +10,10 @@ import 'drawer_widget.dart';
 
 
 class ChampionshipDetailPage extends StatefulWidget {
+
+const ChampionshipDetailPage({Key? key}) :super(key:key);
+static const String routeName ='/championshipDetail';
+
   @override
   State<ChampionshipDetailPage> createState() => ChampionshipDetailPageState();
 }

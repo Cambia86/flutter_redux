@@ -48,11 +48,11 @@ class MyApp extends StatelessWidget {
           // home: MyHomePage(),
           initialRoute: '/',
           routes: {
-            '/': (context) => MyHomePage(),
-            '/login': (context) => LoginPage(),
-            '/details': (context) => DetailScreen(),
-            '/championship': (context) => ChampionshipPage(),
-            '/championshipDetail': (context) => ChampionshipDetailPage(),
+            MyHomePage.routeName: (context) => const MyHomePage(),
+            LoginPage.routeName: (context) => const LoginPage(),
+            DetailScreen.routeName: (context) => const DetailScreen(),
+            ChampionshipPage.routeName: (context) => const ChampionshipPage(),
+            ChampionshipDetailPage.routeName: (context) => const ChampionshipDetailPage(),
           },
         ));
   }
@@ -60,6 +60,9 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   // final String title;
+
+const MyHomePage({Key? key}) :super(key:key);
+static const String routeName ='/';
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -78,49 +81,7 @@ class _MyHomePageState extends State {
       body: Center(
         child: Container(
           height: 400.0,
-          // child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       // display time and location
-          //       // StoreConnector<AppState, AppState>(
-          //       //   converter: (store) => store.state,
-          //       //   builder: (_, state) {
-          //       //     return Text(
-          //       //       'The time in ${state.location} is ${state.time}',
-          //       //       textAlign: TextAlign.center,
-          //       //       style: const TextStyle(
-          //       //           fontSize: 40.0, fontWeight: FontWeight.bold),
-          //       //     );
-          //       //   },
-          //       // ),
-          //       // fetch time button
-          //       // StoreConnector<AppState, FetchTime>(
-          //       //   converter: (store) => () => store.dispatch(fetchTime),
-          //       //   builder: (_, fetchTimeCallback) {
-          //       //     return SizedBox(
-          //       //       width: 250,
-          //       //       height: 50,
-          //       //       child: ElevatedButton(
-          //       //           style: ButtonStyle(
-          //       //               backgroundColor:
-          //       //                   MaterialStateProperty.all(Colors.amber),
-          //       //               textStyle: MaterialStateProperty.all(
-          //       //                 TextStyle(
-          //       //                   color: Colors.brown,
-          //       //                 ),
-          //       //               )),
-          //       //           onPressed: fetchTimeCallback,
-          //       //           child: const Text(
-          //       //             "Click to fetch time",
-          //       //             style: TextStyle(
-          //       //                 color: Colors.brown,
-          //       //                 fontWeight: FontWeight.w600,
-          //       //                 fontSize: 25),
-          //       //           )),
-          //       //     );
-          //       //   },
-          //       // )
-          //     ]),
+         
         ),
       ),
     );

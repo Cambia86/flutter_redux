@@ -9,6 +9,9 @@ import '../redux/model/championship.dart';
 import 'drawer_widget.dart';
 
 class ChampionshipPage extends StatefulWidget {
+  const ChampionshipPage({Key? key}) :super(key:key);
+static const String routeName ='/championship';
+
   @override
   State<ChampionshipPage> createState() => _ChampionshipPageState();
 }
@@ -19,7 +22,7 @@ class _ChampionshipPageState extends State<ChampionshipPage> {
     final Store<AppState> mystore = StoreProvider.of<AppState>(context);
 
     return StoreConnector<AppState, AppState>(
-        onInit: (store) => {store.dispatch(GetChampionshipAction())},
+        onInit: (store) => {store.dispatch(const GetChampionshipAction())},
         converter: (store) => store.state,
         builder: (BuildContext context, AppState state) {
           return Scaffold(

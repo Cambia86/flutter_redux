@@ -4,6 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'drawer_widget.dart';
 
 class DetailScreen extends StatefulWidget {
+
+const DetailScreen({Key? key}) :super(key:key);
+static const String routeName ='/details';
+
   @override
   State<StatefulWidget> createState() {
     return _DetailScreenState();

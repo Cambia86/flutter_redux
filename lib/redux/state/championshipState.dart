@@ -1,8 +1,9 @@
+import 'package:flutter_redux_project/redux/model/MatchList.dart';
 import 'package:flutter_redux_project/redux/model/championship.dart';
 
 class ChampionshipState {
   List<Championship>? championshipList;
-  List<Match>? matchList;
+  MatchList? matchList;
   Championship? currentChampionship;
   int seasonId=2022;
 

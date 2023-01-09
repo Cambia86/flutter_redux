@@ -47,14 +47,10 @@ class AuthState {
   }
 
   AuthState.fromAuthState(AuthState state) {
-    username:
-    state.username;
-    password:
-    state.password;
-    token:
-    state.token;
-    userId:
-    state.userId;
+    username = state.username;
+    password = state.password;
+    token = state.token;
+    userId = state.userId;
   }
 
   String getUserDesc() {

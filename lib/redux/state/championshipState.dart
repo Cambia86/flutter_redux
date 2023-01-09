@@ -13,7 +13,6 @@ class ChampionshipState {
   }
 
   ChampionshipState.fromChampionshipStateState(ChampionshipState state) {
-    championshipList:
-    state.championshipList;
+    championshipList = state.championshipList;
   }
 }

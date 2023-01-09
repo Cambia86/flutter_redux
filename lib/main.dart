@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
           ),
           // home: MyHomePage(),
-          initialRoute: '/',
+          initialRoute: '/login',
           routes: {
             MyHomePage.routeName: (context) => const MyHomePage(),
             LoginPage.routeName: (context) => const LoginPage(),

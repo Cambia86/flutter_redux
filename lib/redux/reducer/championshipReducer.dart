@@ -1,4 +1,5 @@
 import 'package:flutter_redux_project/redux/action/championship_action.dart';
+import 'package:flutter_redux_project/redux/model/MatchList.dart';
 import 'package:flutter_redux_project/redux/state/championshipState.dart';
 
 ChampionshipState championshipReducer(
@@ -26,6 +27,22 @@ ChampionshipState championshipReducer(
   }
   if (action is GetChampionshipMatchListActionSucces) {
     newState.matchList = action.matchList;
+    if (newState.currentChampionship != null) {
+      int currmatchday =
+          newState.currentChampionship!.currentSeason.currentMatchday;
+      newState.currentMatchDayList = action.matchList.lstMatch
+          .where((d) => d.matchday == currmatchday)
+          .toList()
+          .cast<MatchItem>();
+    }
+  }
+  if (action is ChangeMatchDAy) {
+    newState.currentChampionship!.currentSeason.currentMatchday =
+        action.matchday;
+    newState.currentMatchDayList = newState.matchList!.lstMatch
+        .where((d) => d.matchday == action.matchday)
+        .toList()
+        .cast<MatchItem>();
   }
   return newState;
 }

@@ -10,9 +10,8 @@ import '../redux/action/authentication_action.dart';
 import 'drawer_widget.dart';
 
 class LoginPage extends StatefulWidget {
-
-const LoginPage({Key? key}) :super(key:key);
-static const String routeName ='/login';
+  const LoginPage({Key? key}) : super(key: key);
+  static const String routeName = '/login';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -20,10 +19,10 @@ static const String routeName ='/login';
 
 class _LoginPageState extends State<LoginPage> {
   @override
-  void initState(){
+  void initState() {
+    
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
       builder: (BuildContext context, AppState state) {
         return Scaffold(
             appBar: AppBar(
-              title: Text("widget.title"),
+              title: Text("login"),
             ),
             drawer: drawer_widget(),
             body: StoreConnector<AppState, AppState>(
@@ -77,21 +76,10 @@ class _LoginPageState extends State<LoginPage> {
                                 children: [
                                   TextFormField(
                                     style: TextStyle(fontSize: 20),
-                                    // Theme.of(context)
-                                    //     .textTheme
-                                    //     .displaySmall!
-                                    //     .copyWith(color: Colors.black),
                                     keyboardType: TextInputType.text,
                                     controller: userText,
                                     cursorColor: Colors.black,
                                     decoration: InputDecoration(
-                                      // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                                      // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ?  ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                                      // border: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                                      // floatingLabelBehavior: FloatingLabelBehavior.always,
-                                      // hintText: 'Insert your username',
-                                      // hintStyle: Theme.of(context).textTheme.displaySmall!.copyWith(color: Colors.black),
-
                                       labelText: "Username",
                                       labelStyle: Theme.of(context)
                                           .textTheme
@@ -134,10 +122,6 @@ class _LoginPageState extends State<LoginPage> {
                                     controller: passwordText,
                                     cursorColor: Colors.black,
                                     decoration: InputDecoration(
-                                      // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                                      // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                                      // border: OutlineInputBorder(borderSide: BorderSide(color: (mystore.state.loginInfo != null && mystore.state.loginInfo!.loginError != "") ? ColoriApp.coloreQuaternario : ColoriApp.sfondoAppBar)),
-                                      // floatingLabelBehavior: FloatingLabelBehavior.always,
                                       labelText: 'Password',
                                       labelStyle: Theme.of(context)
                                           .textTheme
@@ -150,11 +134,6 @@ class _LoginPageState extends State<LoginPage> {
                                                   )
                                                   ? Colors.red
                                                   : Colors.blue),
-                                      // hintText: 'Enter your password',
-                                      // hintStyle: Theme.of(context)
-                                      //     .textTheme
-                                      //     .displaySmall!
-                                      //     .copyWith(color: Colors.black),
                                       prefixIcon: Icon(
                                         Icons.lock,
                                         size: 20,
@@ -187,44 +166,11 @@ class _LoginPageState extends State<LoginPage> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  // Text(
-                                  //   mystore.state.loginInfo != null
-                                  //       ? mystore.state.loginInfo!.loginError
-                                  //       : "",
-                                  //   style: Theme.of(context)
-                                  //       .textTheme
-                                  //       .displaySmall!
-                                  //       .copyWith(color: Colors.black),
-                                  //   textAlign: TextAlign.start,
-                                  // ),
-                                  Row(
+                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      // Row(
-                                      //   children: [
-                                      //     FlutterSwitch(
-                                      //       width: 45.0,
-                                      //       height: 30.0,
-                                      //       toggleColor: Colors.white,
-                                      //       activeColor: const Color(0xFFE0E0E0),
-                                      //       valueFontSize: 25.0,
-                                      //       toggleSize: 25.0,
-                                      //       value: true,
-                                      //       borderRadius: 30.0,
-                                      //       padding: 0,
-                                      //       showOnOff: false,
-                                      //       onToggle: (val) {
-                                      //         // LoginInfo info = LoginInfo(username: userText.text, password: passwordText.text, areCredentialsSaved: val);
-                                      //         // mystore.dispatch(LoginSwitchAction(loginInfo: info));
-                                      //       },
-                                      //     ),
-                                      //     const SizedBox(
-                                      //       width: 10,
-                                      //     ),
-                                      //     Text("Salva dati di accesso", style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Colors.black,),),
-                                      //   ],
-                                      // ),
+                                  
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             left: 20, top: 10),
@@ -248,6 +194,8 @@ class _LoginPageState extends State<LoginPage> {
                                               ),
                                             ),
                                             onPressed: () {
+                                              userText.text="admin";
+                                              passwordText.text="password";
                                               if (_formKey.currentState!
                                                   .validate()) {
                                                 LoginInfo info = LoginInfo(
@@ -306,10 +254,10 @@ class _LoginPageState extends State<LoginPage> {
                                     : "");
                               }),
                         ),
-                        
-                        state.authState.errorCode!=null ?
-                        Container(child: Text(state.authState.errorMessage)) :
-                        Container(),
+                        state.authState.errorCode != null
+                            ? Container(
+                                child: Text(state.authState.errorMessage))
+                            : Container(),
                       ]);
               },
             ));
@@ -323,7 +271,7 @@ class _LoginPageState extends State<LoginPage> {
     store.dispatch(LoginOnlineAction(
         loginInfo: loginInfo,
         onSuccess: () {
-            //  Navigator.pushNamed(context, '/');
+           Navigator.pushNamed(context, '/championship');
           //  loadDataAndGoHome(store);
         }));
   }

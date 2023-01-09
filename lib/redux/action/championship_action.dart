@@ -49,5 +49,10 @@ class SelectChampionshipAction {
      final Function onSuccess;
 }
 
+class ChangeMatchDAy{
+  const ChangeMatchDAy({required this.matchday});
+  final int matchday;
+}
+
 
 

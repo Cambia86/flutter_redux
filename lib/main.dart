@@ -4,6 +4,7 @@ import 'package:flutter_redux_project/pages/championship_detail_page.dart';
 import 'package:flutter_redux_project/pages/detail_page.dart';
 import 'package:flutter_redux_project/pages/drawer_widget.dart';
 import 'package:flutter_redux_project/pages/login_page.dart';
+import 'package:flutter_redux_project/pages/prevision_page.dart';
 import 'package:flutter_redux_project/redux/middleware/authentication_middleware.dart';
 import 'package:flutter_redux_project/redux/middleware/championship_middleware.dart';
 import 'package:flutter_redux_project/redux/model/app_state.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
             DetailScreen.routeName: (context) => const DetailScreen(),
             ChampionshipPage.routeName: (context) => const ChampionshipPage(),
             ChampionshipDetailPage.routeName: (context) => const ChampionshipDetailPage(),
+            PrevisionPage.routeName: (context) => const PrevisionPage(),
           },
         ));
   }

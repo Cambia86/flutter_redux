@@ -1,29 +1,29 @@
+import 'package:flutter_redux_project/redux/model/prevision.dart';
 
 import '../model/ChampionshipChart.dart';
 import '../model/MatchList.dart';
 import '../model/championship.dart';
 
-class GetChampionshipAction{
+class GetChampionshipAction {
   const GetChampionshipAction();
 }
 
 class GetChampionshipActionSuccess {
-  const GetChampionshipActionSuccess({ required this.championshipList});
+  const GetChampionshipActionSuccess({required this.championshipList});
   final ChampionshipList championshipList;
 }
 
-
 class GetChampionshipActionFailure {
-  const GetChampionshipActionFailure({ required this.loginInfo});
+  const GetChampionshipActionFailure({required this.loginInfo});
   final Championship loginInfo;
 }
 
-class GetChampionshipChartAction{
-    const GetChampionshipChartAction();
+class GetChampionshipChartAction {
+  const GetChampionshipChartAction();
 }
 
 class GetChampionshipChartActionSuccess {
-  const GetChampionshipChartActionSuccess({ required this.championshipChart});
+  const GetChampionshipChartActionSuccess({required this.championshipChart});
   final ChampionshipChartList championshipChart;
 }
 
@@ -32,27 +32,41 @@ class GetChampionshipChartActionSuccess {
 //   final Championship loginInfo;
 // }
 
-class GetChampionshipMatchListAction{
-  const GetChampionshipMatchListAction({required this.championshipId,required this.seasonId});
+class GetChampionshipMatchListAction {
+  const GetChampionshipMatchListAction(
+      {required this.championshipId, required this.seasonId});
   final int championshipId;
   final int seasonId;
 }
 
-class GetChampionshipMatchListActionSucces{
-   const GetChampionshipMatchListActionSucces({required this.matchList});
+class GetChampionshipMatchListActionSucces {
+  const GetChampionshipMatchListActionSucces({required this.matchList});
   final MatchList matchList;
 }
 
 class SelectChampionshipAction {
-  const SelectChampionshipAction({ required this.selectedChampionship, required this.onSuccess});
+  const SelectChampionshipAction(
+      {required this.selectedChampionship, required this.onSuccess});
   final Championship selectedChampionship;
-     final Function onSuccess;
+  final Function onSuccess;
 }
 
-class ChangeMatchDAy{
+class ChangeMatchDAy {
   const ChangeMatchDAy({required this.matchday});
   final int matchday;
 }
 
+class GetMatchPrevisionListAction {
+  const GetMatchPrevisionListAction(
+      {required this.championshipId,
+      required this.seasonId,
+      required this.matchday});
+  final int championshipId;
+  final int seasonId;
+  final int matchday;
+}
 
-
+class GetMatchPrevisionListActionSucces {
+  const GetMatchPrevisionListActionSucces({required this.prevList});
+  final PrevisionList prevList;
+}

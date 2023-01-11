@@ -47,74 +47,90 @@ class ChampionshipDetailPageState extends State<ChampionshipDetailPage> {
                     )
                   : Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                 int curmathday=state.championshipState.currentChampionship!
-                                    .currentSeason!.currentMatchday;
-                                 mystore.dispatch(ChangeMatchDAy(matchday:curmathday-1));
-                              },
-                              child: Icon(Icons.arrow_back    , color: Colors.white),
-                              style: ElevatedButton.styleFrom(
-                                shape: CircleBorder(),
-                                padding: EdgeInsets.all(10),
-                                backgroundColor:
-                                    Colors.blue, // <-- Button color
-                                foregroundColor: Colors.red, // <-- Splash color
-                              ),
+                        Container(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/prevision');
+                            },
+                            child: Icon(Icons.sports_soccer_sharp,
+                                color: Colors.white),
+                            style: ElevatedButton.styleFrom(
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(10),
+                              backgroundColor: Colors.blue, // <-- Button color
+                              foregroundColor: Colors.red, // <-- Splash color
                             ),
-                            // ignore: prefer_interpolation_to_compose_strings
-                            Text("day: " +
-                                state.championshipState.currentChampionship!
-                                    .currentSeason.currentMatchday
-                                    .toString()),
-                            ElevatedButton(
-                              onPressed: () {
-                                 int curmathday=state.championshipState.currentChampionship!
-                                    .currentSeason!.currentMatchday;
-                                 mystore.dispatch(ChangeMatchDAy(matchday:curmathday+1));
-                              },
-                              child: Icon(Icons.arrow_forward    , color: Colors.white),
-                              style: ElevatedButton.styleFrom(
-                                shape: CircleBorder(),
-                                padding: EdgeInsets.all(10),
-                                backgroundColor:
-                                    Colors.blue, // <-- Button color
-                                foregroundColor: Colors.red, // <-- Splash color
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                        Expanded(
-                          child: ListView.builder(
-                              itemCount: state.championshipState
-                                  .currentMatchDayList!.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                MatchItem mi = state.championshipState
-                                    .currentMatchDayList![index];
-                                return Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        getTeamREsult(mi.homeTeam!,
-                                            mi.score!.fullTime!.homeTeam),
-                                        getTeamREsult(mi.awayTeam!,
-                                            mi.score!.fullTime!.awayTeam),
-                                      ],
-                                    ),
-                                    // altre info del match
-                                    // ....
-                                  ],
-                                );
-                              }),
-                        ),
+                        headerButton(state, mystore),
+                        listmatch(state),
                       ],
                     ));
         });
+  }
+
+  Expanded listmatch(AppState state) {
+    return Expanded(
+      child: ListView.builder(
+          itemCount: state.championshipState.currentMatchDayList!.length,
+          itemBuilder: (BuildContext context, int index) {
+            MatchItem mi = state.championshipState.currentMatchDayList![index];
+            return Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    getTeamREsult(mi.homeTeam!, mi.score!.fullTime!.homeTeam),
+                    getTeamREsult(mi.awayTeam!, mi.score!.fullTime!.awayTeam),
+                  ],
+                ),
+                // altre info del match
+                // ....
+              ],
+            );
+          }),
+    );
+  }
+
+  Row headerButton(AppState state, Store<AppState> mystore) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            int curmathday = state.championshipState.currentChampionship!
+                .currentSeason!.currentMatchday;
+            mystore.dispatch(ChangeMatchDAy(matchday: curmathday - 1));
+          },
+          child: Icon(Icons.arrow_back, color: Colors.white),
+          style: ElevatedButton.styleFrom(
+            shape: CircleBorder(),
+            padding: EdgeInsets.all(10),
+            backgroundColor: Colors.blue, // <-- Button color
+            foregroundColor: Colors.red, // <-- Splash color
+          ),
+        ),
+        // ignore: prefer_interpolation_to_compose_strings
+        Text("day: " +
+            state.championshipState.currentChampionship!.currentSeason
+                .currentMatchday
+                .toString()),
+        ElevatedButton(
+          onPressed: () {
+            int curmathday = state.championshipState.currentChampionship!
+                .currentSeason!.currentMatchday;
+            mystore.dispatch(ChangeMatchDAy(matchday: curmathday + 1));
+          },
+          child: Icon(Icons.arrow_forward, color: Colors.white),
+          style: ElevatedButton.styleFrom(
+            shape: CircleBorder(),
+            padding: EdgeInsets.all(10),
+            backgroundColor: Colors.blue, // <-- Button color
+            foregroundColor: Colors.red, // <-- Splash color
+          ),
+        ),
+      ],
+    );
   }
 
   Row getTeamREsult(Team team, int? res) {

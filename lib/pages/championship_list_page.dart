@@ -22,7 +22,9 @@ class _ChampionshipPageState extends State<ChampionshipPage> {
     final Store<AppState> mystore = StoreProvider.of<AppState>(context);
 
     return StoreConnector<AppState, AppState>(
-        onInit: (store) => {store.dispatch(const GetChampionshipAction())},
+        onInit: (store) => {
+          store.dispatch(const GetChampionshipAction())
+          },
         converter: (store) => store.state,
         builder: (BuildContext context, AppState state) {
           return Scaffold(

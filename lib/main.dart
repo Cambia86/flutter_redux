@@ -4,9 +4,10 @@ import 'package:flutter_redux_project/pages/championship_detail_page.dart';
 import 'package:flutter_redux_project/pages/detail_page.dart';
 import 'package:flutter_redux_project/pages/drawer_widget.dart';
 import 'package:flutter_redux_project/pages/login_page.dart';
-import 'package:flutter_redux_project/pages/prevision_page.dart';
+import 'package:flutter_redux_project/pages/prevision.dart';
 import 'package:flutter_redux_project/redux/middleware/authentication_middleware.dart';
 import 'package:flutter_redux_project/redux/middleware/championship_middleware.dart';
+import 'package:flutter_redux_project/redux/middleware/prevision_middleware.dart';
 import 'package:flutter_redux_project/redux/model/app_state.dart';
 import 'package:flutter_redux_project/redux/reducers.dart';
 import 'package:redux/redux.dart';
@@ -18,7 +19,8 @@ Store<AppState> getStoreWithParams() {
       initialState: AppState.initial(),
       middleware: [
         AuthenticationMiddleware.fetchAuthMiddleware,
-        ChampionshipMiddleware.fetchChampionshipMiddleware
+        ChampionshipMiddleware.fetchChampionshipMiddleware,
+             PrevisionMiddleware.fetchPrevisionMiddleware
       ]);
   return store;
 }

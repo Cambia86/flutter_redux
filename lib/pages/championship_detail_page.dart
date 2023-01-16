@@ -6,7 +6,7 @@ import 'package:flutter_redux_project/redux/model/app_state.dart';
 import 'package:redux/redux.dart';
 
 import '../redux/model/MatchList.dart';
-import '../redux/model/championship.dart';
+
 import 'drawer_widget.dart';
 
 class ChampionshipDetailPage extends StatefulWidget {
@@ -47,21 +47,12 @@ class ChampionshipDetailPageState extends State<ChampionshipDetailPage> {
                     )
                   : Column(
                       children: [
-                        Container(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/prevision');
-                            },
-                            child: Icon(Icons.sports_soccer_sharp,
-                                color: Colors.white),
-                            style: ElevatedButton.styleFrom(
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(10),
-                              backgroundColor: Colors.blue, // <-- Button color
-                              foregroundColor: Colors.red, // <-- Splash color
-                            ),
-                          ),
-                        ),
+                        Container(child: ElevatedButton(onPressed: () { 
+                          Navigator.pushNamed(context, '/prevision');
+                         },
+                        child: Text("Prevision")),),
+                        
+                      
                         headerButton(state, mystore),
                         listmatch(state),
                       ],

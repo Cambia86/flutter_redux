@@ -11,12 +11,12 @@ class PrevisionList {
 }
 
 class PercentPrevision {
-  Double winHome;
-  Double draw;
-  Double winAway;
-  Double winHomePerc;
-  Double drawPerc;
-  Double winAwayPerc;
+  double winHome;
+  double draw;
+  double winAway;
+  double winHomePerc;
+  double drawPerc;
+  double winAwayPerc;
 
   PercentPrevision(
       {required this.winHome,
@@ -28,30 +28,37 @@ class PercentPrevision {
 
   factory PercentPrevision.fromJson(Map<String, dynamic> json) {
     return PercentPrevision(
-        winHome: json['winHome'],
-        draw: json['draw'],
-        winAway: json['winAway'],
-        winHomePerc: json['winHomePerc'],
-        drawPerc: json['drawPerc'],
-        winAwayPerc: json['winAwayPerc']);
+        winHome: (double.tryParse(json['winHome'].toString()) ?? 0),
+        winAway: (double.tryParse(json['winAway'].toString()) ?? 0),
+        draw: (double.tryParse(json['draw'].toString()) ?? 0),
+        winHomePerc:(double.tryParse(json['winHomePerc'].toString()) ?? 0),
+        drawPerc:(double.tryParse(json['drawPerc'].toString()) ?? 0),
+        winAwayPerc: (double.tryParse(json['winAwayPerc'].toString()) ?? 0),
+       
+        );
   }
 }
 
+class valuePerc{
+  
+}
+
 class Prevision {
-  int id;
+  // int id;
   Team homeTeam;
   Team awayTeam;
   int competitionId;
   int seasonId;
   int matchDay;
   String matchDate;
-  Double winHome;
-  Double winAway;
-  Double draw;
+  double winHome;
+  double winAway;
+  double draw;
   PercentPrevision allMatch;
 
   Prevision(
-      {required this.id,
+      {
+      // required this.id,
       required this.homeTeam,
       required this.awayTeam,
       required this.competitionId,
@@ -65,16 +72,15 @@ class Prevision {
 
   factory Prevision.fromJson(Map<String, dynamic> json) {
     return Prevision(
-        id: json['id'],
         homeTeam: Team.fromJson(json['homeTeam']),
         awayTeam: Team.fromJson(json['awayTeam']),
         competitionId: json['competitionId'],
         seasonId: json['seasonId'],
         matchDay: json['matchDay'],
         matchDate: json['matchDate'],
-        winHome: json['winHome'],
-        winAway: json['winAway'],
-        draw: json['draw'],
+        winHome: (double.tryParse(json['winHome'].toString()) ?? 0),
+        winAway: (double.tryParse(json['winAway'].toString()) ?? 0),
+        draw: (double.tryParse(json['draw'].toString()) ?? 0),
         allMatch: PercentPrevision.fromJson(json['allMatch'])
         // emblemUrl: json['emblemUrl'],
         );
@@ -82,7 +88,9 @@ class Prevision {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      // 'id': id,
+      'homeTeam': homeTeam,
+      'awayTeam': awayTeam,
       // 'name': name,
       // 'code': code,
       // 'emblemUrl': emblemUrl,

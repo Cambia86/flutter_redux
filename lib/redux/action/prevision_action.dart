@@ -16,3 +16,9 @@ class GetPrevisionActionFailure {
   const GetPrevisionActionFailure({ required this.loginInfo});
   final Championship loginInfo;
 }
+
+class AddPrevisionToCart{
+    AddPrevisionToCart({ required this.prevision, required this.choice });
+  final Prevision prevision;
+  final String choice;
+}

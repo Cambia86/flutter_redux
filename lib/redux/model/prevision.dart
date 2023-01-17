@@ -41,6 +41,7 @@ class PercentPrevision {
 class ValuePerc {
   double quota;
   double quotaPerc;
+  bool isSelected=false;
 
   ValuePerc({required this.quota, required this.quotaPerc});
 
@@ -52,10 +53,9 @@ class ValuePerc {
   }
 }
 
-
-
 class Prevision {
   // int id;
+  String id;
   Team homeTeam;
   Team awayTeam;
   int competitionId;
@@ -89,12 +89,13 @@ class Prevision {
   ValuePerc goal_1_3_ospite;
   ValuePerc goal_1_4_ospite;
   ValuePerc goal_2_4_ospite;
-  
+
   Score score;
 
+  bool isSelected = false;
+
   Prevision(
-      {
-      // required this.id,
+      {required this.id,
       required this.homeTeam,
       required this.awayTeam,
       required this.competitionId,
@@ -119,7 +120,7 @@ class Prevision {
       required this.goal_2_4,
       required this.goal_2_5,
       required this.goal_3_6,
-         required this.goal_1_3_casa,
+      required this.goal_1_3_casa,
       required this.goal_1_4_casa,
       required this.goal_2_4_casa,
       required this.goal_1_3_ospite,
@@ -129,6 +130,7 @@ class Prevision {
 
   factory Prevision.fromJson(Map<String, dynamic> json) {
     return Prevision(
+        id: json['_id'],
         homeTeam: Team.fromJson(json['homeTeam']),
         awayTeam: Team.fromJson(json['awayTeam']),
         competitionId: json['competitionId'],
@@ -139,7 +141,7 @@ class Prevision {
         winAway: (double.tryParse(json['winAway'].toString()) ?? 0),
         draw: (double.tryParse(json['draw'].toString()) ?? 0),
         allMatch: PercentPrevision.fromJson(json['allMatch']),
-         goal: ValuePerc.fromJson(json['goal']),
+        goal: ValuePerc.fromJson(json['goal']),
         noGoal: ValuePerc.fromJson(json['no_goal']),
         over_15: ValuePerc.fromJson(json['over_15']),
         under_15: ValuePerc.fromJson(json['under_15']),
@@ -159,7 +161,7 @@ class Prevision {
         goal_1_3_ospite: ValuePerc.fromJson(json['goal_1_3_ospite']),
         goal_1_4_ospite: ValuePerc.fromJson(json['goal_1_4_ospite']),
         goal_2_4_ospite: ValuePerc.fromJson(json['goal_2_4_ospite']),
-        score:Score.fromJson(json['score'])
+        score: Score.fromJson(json['score'])
         // emblemUrl: json['emblemUrl'],
         );
   }

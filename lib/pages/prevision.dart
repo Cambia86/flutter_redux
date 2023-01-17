@@ -87,17 +87,17 @@ class _PrevisionPageState extends State<PrevisionPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     boxKeyValue("1", prev.allMatch.winHome,
-                        prev.allMatch.winHomePerc, prev.isSelected, () {
+                        prev.allMatch.winHomePerc, prev.allMatch.winHomeSelected, () {
                       mystore.dispatch(
                           AddPrevisionToCart(prevision: prev, choice: "1"));
                     }),
                     boxKeyValue("X", prev.allMatch.draw, prev.allMatch.drawPerc,
-                        prev.isSelected, () {
+                        prev.allMatch.drawSelected, () {
                       mystore.dispatch(
                           AddPrevisionToCart(prevision: prev, choice: "X"));
                     }),
                     boxKeyValue("2", prev.allMatch.winAway,
-                        prev.allMatch.winAway, prev.isSelected, () {
+                        prev.allMatch.winAway, prev.allMatch.winAwaySelected, () {
                       mystore.dispatch(
                           AddPrevisionToCart(prevision: prev, choice: "2"));
                     }),

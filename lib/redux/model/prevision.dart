@@ -17,6 +17,9 @@ class PercentPrevision {
   double winHomePerc;
   double drawPerc;
   double winAwayPerc;
+  bool winHomeSelected=false;
+  bool drawSelected=false;
+  bool winAwaySelected=false;
 
   PercentPrevision(
       {required this.winHome,

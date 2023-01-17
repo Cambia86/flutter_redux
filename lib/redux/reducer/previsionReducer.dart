@@ -29,6 +29,13 @@ MatchPrevisionState previsionReducer(MatchPrevisionState prevState, dynamic acti
     Bet b=Bet(prev:  action.prevision, choice: action.choice);
     newState.betList.add(b);
 
+    if(action.choice=="1")
+      newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].allMatch.winHomeSelected=!newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].allMatch.winHomeSelected;
+    if(action.choice=="X")
+      newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].allMatch.drawSelected=!newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].allMatch.drawSelected;
+    if(action.choice=="2")
+      newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].allMatch.winAwaySelected=!newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].allMatch.winAwaySelected;
+    
     if(action.choice=="GOAL")
       newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].goal.isSelected=!newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].goal.isSelected;
     if(action.choice=="NO-GOAL")

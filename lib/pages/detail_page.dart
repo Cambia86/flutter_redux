@@ -21,7 +21,7 @@ class _DetailScreenState extends State<DetailScreen> {
       appBar: AppBar(
         title: Text("Detail"),
       ),
-      drawer: drawer_widget(),
+      drawer: drawer_widget(false),
       body:Container());
   }
 }

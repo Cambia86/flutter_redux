@@ -38,7 +38,7 @@ class _PrevisionPageState extends State<PrevisionPage> {
               appBar: AppBar(
                 title: Text("Prevision"),
               ),
-              drawer: drawer_widget(),
+              drawer: drawer_widget(false),
               body: Container());
         });
   }

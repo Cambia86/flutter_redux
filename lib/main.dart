@@ -83,7 +83,7 @@ class _MyHomePageState extends State {
       appBar: AppBar(
         title: Text("app test"),
       ),
-      drawer: drawer_widget(),
+      drawer: drawer_widget(true),
       body: Center(
         child: Container(
           height: 400.0,

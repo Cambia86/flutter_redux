@@ -2,6 +2,7 @@ import '../model/prevision.dart';
 
 class MatchPrevisionState {
   PrevisionList? previsionList;
+  bool isLoading=false;
   // MatchList? matchList;
   // List<MatchItem>? currentMatchDayList;
   // Championship? currentChampionship;

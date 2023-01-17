@@ -29,10 +29,15 @@ class _PrevisionPageState extends State<PrevisionPage> {
         builder: (BuildContext context, AppState state) {
           return Scaffold(
             appBar: AppBar(
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.black),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
               title: Text("Prevision"),
+              centerTitle: true,
             ),
-            drawer: drawer_widget(),
-            body: state.previsionState.previsionList == null
+            // drawer: drawers_widget(true),
+            body: state.previsionState.isLoading == true
                 ? Container(
                     width: double.infinity,
                     height: double.infinity,
@@ -57,28 +62,100 @@ class _PrevisionPageState extends State<PrevisionPage> {
             itemBuilder: (BuildContext context, int index) {
               Prevision prev =
                   state.previsionState.previsionList!.lstPrevision[index];
+
+
+              String scoreht=prev.score.fullTime != null ? ": "+ prev.score.fullTime!.homeTeam.toString():"";                  
+              String scoreat=prev.score.fullTime != null ?  ": "+prev.score.fullTime!.awayTeam.toString():"";                  
               return Column(children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(padding: const EdgeInsets.only(left: 20, top: 10, right: 20),child: Text(prev.homeTeam.name!)),
-                    Container(padding: const EdgeInsets.only(left: 20, top: 10, right: 20),child: Text(prev.awayTeam.name!)),
+                    Container(
+                        padding:
+                            const EdgeInsets.only(left: 20, top: 10, right: 20),
+                        child: Text(prev.homeTeam.name! + scoreht )),
+                    Container(
+                        padding:
+                            const EdgeInsets.only(left: 20, top: 10, right: 20),
+                        child: Text(prev.awayTeam.name! + scoreat)),
                   ],
                 ),
-                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(padding: const EdgeInsets.only(left: 20, top: 10, right: 20),child: Text(prev.allMatch.winHome.toString() + "( "+prev.allMatch.winHomePerc.toString()  + " )")),
-                    Container(padding: const EdgeInsets.only(left: 20, top: 10, right: 20),child: Text(prev.allMatch.draw.toString()+ "( "+prev.allMatch.drawPerc.toString()  + " )")),
-                    Container(padding: const EdgeInsets.only(left: 20, top: 10, right: 20),child: Text(prev.allMatch.winAway.toString()+ "( "+prev.allMatch.winAwayPerc.toString()  + " )")),
+                    boxKeyValue(
+                        "1", prev.allMatch.winHome, prev.allMatch.winHomePerc),
+                    boxKeyValue(
+                        "X", prev.allMatch.draw, prev.allMatch.drawPerc),
+                    boxKeyValue(
+                        "2", prev.allMatch.winAway, prev.allMatch.winAway),
                   ],
                 ),
-                //  Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //  children: [
-                //    Container(padding: const EdgeInsets.only(left: 20, top: 10, right: 20),child: Text(prev.allMatch.winHome.toString() + "( "+prev.allMatch.winHomePerc.toString()  + " )")),
-                //  ],),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  boxKeyValue("GOAL", prev.goal.quota, prev.goal.quotaPerc),
+                  boxKeyValue(
+                      "NO-GOAL", prev.noGoal.quota, prev.noGoal.quotaPerc),
+                ]),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  boxKeyValue("OVER 1,5", prev.over_15.quota, prev.over_15.quotaPerc),
+                  boxKeyValue(
+                      "UNDER 1,5", prev.under_15.quota, prev.under_15.quotaPerc),
+                ]),
+                
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  boxKeyValue("OVER 2,5", prev.over_25.quota, prev.over_25.quotaPerc),
+                  boxKeyValue(
+                      "UNDER 2,5", prev.under_25.quota, prev.under_25.quotaPerc),
+                ]),  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  boxKeyValue("OVER 3,5", prev.over_35.quota, prev.over_35.quotaPerc),
+                  boxKeyValue(
+                      "UNDER 3,5", prev.under_35.quota, prev.under_35.quotaPerc),
+                ]), Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  boxKeyValue("Goal 1-3", prev.goal_1_3.quota, prev.goal_1_3.quotaPerc),
+                  boxKeyValue(
+                      "Goal 1-4", prev.goal_1_4.quota, prev.goal_1_4.quotaPerc),
+                ]),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  boxKeyValue("Goal 1-5", prev.goal_1_5.quota, prev.goal_1_5.quotaPerc),
+                  boxKeyValue(
+                      "Goal 2-4", prev.goal_2_4.quota, prev.goal_2_4.quotaPerc),
+                ]),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  boxKeyValue("Goal 2-5", prev.goal_2_5.quota, prev.goal_2_5.quotaPerc),
+                  boxKeyValue(
+                      "Goal 3-6", prev.goal_3_6.quota, prev.goal_3_6.quotaPerc),
+                ]),
+                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  boxKeyValue("Casa 1-3", prev.goal_1_3_casa.quota, prev.goal_1_3_casa.quotaPerc),
+                  boxKeyValue(
+                      "Casa 1-4", prev.goal_1_4_casa.quota, prev.goal_1_4_casa.quotaPerc),
+                ]),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  boxKeyValue("Casa 2-4", prev.goal_2_4_casa.quota, prev.goal_2_4_casa.quotaPerc),
+                  boxKeyValue(
+                      "Fuori 1-3", prev.goal_1_3_ospite.quota, prev.goal_1_3_ospite.quotaPerc),
+                ]),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  boxKeyValue("Fuori 1-4", prev.goal_1_4_ospite.quota, prev.goal_1_4_ospite.quotaPerc),
+                  boxKeyValue(
+                      "Fuori 2-4", prev.goal_2_4_ospite.quota, prev.goal_2_4_ospite.quotaPerc),
+                ]),
+            
                 SizedBox(height: 10),
               ]);
             }));
+  }
+
+  Flexible boxKeyValue(String key, double value, double valuePerc) {
+    return Flexible(
+      child: Container(
+          padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
+          child: Text(key +
+              ": " +
+              value.toString() +
+              "( " +
+              valuePerc.toString() +
+              " )")),
+    );
   }
 }

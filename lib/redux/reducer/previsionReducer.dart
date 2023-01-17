@@ -7,12 +7,12 @@ import 'package:flutter_redux_project/redux/state/matchPrevisionState.dart';
 MatchPrevisionState previsionReducer(MatchPrevisionState prevState, dynamic action) {
   MatchPrevisionState newState = MatchPrevisionState.fromPrevisionState(prevState);
   if (action is GetPrevisionAction) {
-    // newState.isLoading = true;
+    newState.isLoading = true;
   }
-
+  
   if (action is GetPrevisionActionSuccess) {
     newState.previsionList=action.previsionList;
-  //   // newState.isLoading = false;
+    newState.isLoading = false;
   //   // newState.username != action.loginInfo.username;
   //   // newState.firstName = action.loginInfo.firstName;
   //   // newState.lastName = action.loginInfo.lastName;

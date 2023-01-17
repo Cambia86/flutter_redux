@@ -35,7 +35,7 @@ class ChampionshipDetailPageState extends State<ChampionshipDetailPage> {
               appBar: AppBar(
                 title: Text("Championship detail"),
               ),
-              drawer: drawer_widget(),
+              drawer: drawer_widget(false),
               body: mystore.state.championshipState.matchList == null
                   ? Container(
                       width: double.infinity,

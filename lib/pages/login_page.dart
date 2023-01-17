@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
             appBar: AppBar(
               title: Text("login"),
             ),
-            drawer: drawer_widget(),
+            drawer: drawer_widget(false),
             body: StoreConnector<AppState, AppState>(
               converter: (store) => store.state,
               builder: (context, state) {

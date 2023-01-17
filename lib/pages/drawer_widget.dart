@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class drawer_widget extends StatelessWidget {
-  const drawer_widget({
+  const drawer_widget(this.showArrow,{
     Key? key,
   }) : super(key: key);
 
+   final bool showArrow;
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child: 
+   
+      ListView(
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: [
@@ -44,7 +47,7 @@ class drawer_widget extends StatelessWidget {
           ),
           
         ],
-      ),
+      )
     );
   }
 }

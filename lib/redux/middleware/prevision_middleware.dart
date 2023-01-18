@@ -38,6 +38,7 @@ class PrevisionMiddleware {
         if (resp==true) {
           store.dispatch(
               DeletePrevisionActionSuccess());
+             action.onSuccess();
           // action.onSuccess();
         } else {
           // store.dispatch(LoginOnlineActionFailure(loginInfo: loginInfo!));

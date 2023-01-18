@@ -41,16 +41,19 @@ class _PrevisionPageState extends State<PrevisionPage> {
                     child: GestureDetector(
                       onTap: () {
                         mystore.dispatch(DeletePrevisionAction(
-                          championshipId:
-                              state.championshipState.currentChampionship!.id,
-                          matchday: mystore
-                              .state
-                              .championshipState
-                              .currentChampionship!
-                              .currentSeason
-                              .currentMatchday,
-                          seasonId: state.previsionState.seasonId,
-                        ));
+                            championshipId:
+                                state.championshipState.currentChampionship!.id,
+                            matchday: mystore
+                                .state
+                                .championshipState
+                                .currentChampionship!
+                                .currentSeason
+                                .currentMatchday,
+                            seasonId: state.previsionState.seasonId,
+                            onSuccess: () {
+                             Navigator.of(context).pop();
+                              //  loadDataAndGoHome(store);
+                            }));
                       },
                       child: Icon(
                         Icons.delete,

@@ -84,6 +84,10 @@ MatchPrevisionState previsionReducer(MatchPrevisionState prevState, dynamic acti
   if(action is DeletePrevisionAction){
     newState.isLoading=true;
   }
+   if(action is DeletePrevisionAction){
+    newState.isLoading=false;
+      newState.previsionList!.lstPrevision=[];
+  }
 
   return newState;
 }

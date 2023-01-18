@@ -22,3 +22,17 @@ class AddPrevisionToCart{
   final Prevision prevision;
   final String choice;
 }
+
+class DeletePrevisionAction{
+  DeletePrevisionAction({required this.championshipId,
+      required this.seasonId,
+      required this.matchday});
+  final int championshipId;
+  final int seasonId;
+  final int matchday;
+}
+
+class DeletePrevisionActionSuccess{
+  DeletePrevisionActionSuccess();
+ 
+}

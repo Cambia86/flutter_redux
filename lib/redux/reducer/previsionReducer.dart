@@ -79,8 +79,10 @@ MatchPrevisionState previsionReducer(MatchPrevisionState prevState, dynamic acti
       newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].goal_1_4_ospite.isSelected=!newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].goal_1_4_ospite.isSelected;
     if(action.choice=="Fuori 2-4")
       newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].goal_2_4_ospite.isSelected=!newState.previsionList!.lstPrevision.where((i) => i.id ==action.prevision.id).toList()[0].goal_2_4_ospite.isSelected;
-    
-    
+  }
+
+  if(action is DeletePrevisionAction){
+    newState.isLoading=true;
   }
 
   return newState;

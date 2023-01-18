@@ -30,11 +30,34 @@ class _PrevisionPageState extends State<PrevisionPage> {
           return Scaffold(
             appBar: AppBar(
               leading: IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.black),
+                icon: Icon(Icons.arrow_back, color: Colors.white),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               title: Text("Prevision"),
               centerTitle: true,
+              actions: [
+                Padding(
+                    padding: EdgeInsets.only(right: 20.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        mystore.dispatch(DeletePrevisionAction(
+                          championshipId:
+                              state.championshipState.currentChampionship!.id,
+                          matchday: mystore
+                              .state
+                              .championshipState
+                              .currentChampionship!
+                              .currentSeason
+                              .currentMatchday,
+                          seasonId: state.previsionState.seasonId,
+                        ));
+                      },
+                      child: Icon(
+                        Icons.delete,
+                        size: 26.0,
+                      ),
+                    )),
+              ],
             ),
             // drawer: drawers_widget(true),
             body: state.previsionState.isLoading == true
@@ -86,8 +109,11 @@ class _PrevisionPageState extends State<PrevisionPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    boxKeyValue("1", prev.allMatch.winHome,
-                        prev.allMatch.winHomePerc, prev.allMatch.winHomeSelected, () {
+                    boxKeyValue(
+                        "1",
+                        prev.allMatch.winHome,
+                        prev.allMatch.winHomePerc,
+                        prev.allMatch.winHomeSelected, () {
                       mystore.dispatch(
                           AddPrevisionToCart(prevision: prev, choice: "1"));
                     }),
@@ -96,8 +122,11 @@ class _PrevisionPageState extends State<PrevisionPage> {
                       mystore.dispatch(
                           AddPrevisionToCart(prevision: prev, choice: "X"));
                     }),
-                    boxKeyValue("2", prev.allMatch.winAway,
-                        prev.allMatch.winAway, prev.allMatch.winAwaySelected, () {
+                    boxKeyValue(
+                        "2",
+                        prev.allMatch.winAway,
+                        prev.allMatch.winAway,
+                        prev.allMatch.winAwaySelected, () {
                       mystore.dispatch(
                           AddPrevisionToCart(prevision: prev, choice: "2"));
                     }),
@@ -125,8 +154,11 @@ class _PrevisionPageState extends State<PrevisionPage> {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "OVER 1,5"));
                       }),
-                      boxKeyValue("UN 1,5", prev.under_15.quota,
-                          prev.under_15.quotaPerc, prev.under_15.isSelected, () {
+                      boxKeyValue(
+                          "UN 1,5",
+                          prev.under_15.quota,
+                          prev.under_15.quotaPerc,
+                          prev.under_15.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "UNDER 1,5"));
                       }),
@@ -139,8 +171,11 @@ class _PrevisionPageState extends State<PrevisionPage> {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "OVER 2,5"));
                       }),
-                      boxKeyValue("UN 2,5", prev.under_25.quota,
-                          prev.under_25.quotaPerc, prev.under_25.isSelected, () {
+                      boxKeyValue(
+                          "UN 2,5",
+                          prev.under_25.quota,
+                          prev.under_25.quotaPerc,
+                          prev.under_25.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "UNDER 2,5"));
                       }),
@@ -153,8 +188,11 @@ class _PrevisionPageState extends State<PrevisionPage> {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "OVER 3,5"));
                       }),
-                      boxKeyValue("UN 3,5", prev.under_35.quota,
-                          prev.under_35.quotaPerc, prev.under_35.isSelected, () {
+                      boxKeyValue(
+                          "UN 3,5",
+                          prev.under_35.quota,
+                          prev.under_35.quotaPerc,
+                          prev.under_35.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "UNDER 3,5"));
                       }),
@@ -162,13 +200,19 @@ class _PrevisionPageState extends State<PrevisionPage> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      boxKeyValue("G 1-3", prev.goal_1_3.quota,
-                          prev.goal_1_3.quotaPerc, prev.goal_1_3.isSelected, () {
+                      boxKeyValue(
+                          "G 1-3",
+                          prev.goal_1_3.quota,
+                          prev.goal_1_3.quotaPerc,
+                          prev.goal_1_3.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Goal 1-3"));
                       }),
-                      boxKeyValue("G 1-4", prev.goal_1_4.quota,
-                          prev.goal_1_4.quotaPerc, prev.goal_1_4.isSelected, () {
+                      boxKeyValue(
+                          "G 1-4",
+                          prev.goal_1_4.quota,
+                          prev.goal_1_4.quotaPerc,
+                          prev.goal_1_4.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Goal 1-4"));
                       }),
@@ -176,13 +220,19 @@ class _PrevisionPageState extends State<PrevisionPage> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      boxKeyValue("G 1-5", prev.goal_1_5.quota,
-                          prev.goal_1_5.quotaPerc, prev.goal_1_5.isSelected, () {
+                      boxKeyValue(
+                          "G 1-5",
+                          prev.goal_1_5.quota,
+                          prev.goal_1_5.quotaPerc,
+                          prev.goal_1_5.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Goal 1-5"));
                       }),
-                      boxKeyValue("G 2-4", prev.goal_2_4.quota,
-                          prev.goal_2_4.quotaPerc, prev.goal_2_4.isSelected, () {
+                      boxKeyValue(
+                          "G 2-4",
+                          prev.goal_2_4.quota,
+                          prev.goal_2_4.quotaPerc,
+                          prev.goal_2_4.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Goal 2-4"));
                       }),
@@ -190,13 +240,19 @@ class _PrevisionPageState extends State<PrevisionPage> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      boxKeyValue("Goal 2-5", prev.goal_2_5.quota,
-                          prev.goal_2_5.quotaPerc, prev.goal_2_5.isSelected, () {
+                      boxKeyValue(
+                          "Goal 2-5",
+                          prev.goal_2_5.quota,
+                          prev.goal_2_5.quotaPerc,
+                          prev.goal_2_5.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Goal 2-5"));
                       }),
-                      boxKeyValue("Goal 3-6", prev.goal_3_6.quota,
-                          prev.goal_3_6.quotaPerc, prev.goal_3_6.isSelected, () {
+                      boxKeyValue(
+                          "Goal 3-6",
+                          prev.goal_3_6.quota,
+                          prev.goal_3_6.quotaPerc,
+                          prev.goal_3_6.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Goal 3-6"));
                       }),
@@ -204,13 +260,19 @@ class _PrevisionPageState extends State<PrevisionPage> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      boxKeyValue("Casa 1-3", prev.goal_1_3_casa.quota,
-                          prev.goal_1_3_casa.quotaPerc, prev.goal_1_3_casa.isSelected, () {
+                      boxKeyValue(
+                          "Casa 1-3",
+                          prev.goal_1_3_casa.quota,
+                          prev.goal_1_3_casa.quotaPerc,
+                          prev.goal_1_3_casa.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Casa 1-3"));
                       }),
-                      boxKeyValue("Casa 1-4", prev.goal_1_4_casa.quota,
-                          prev.goal_1_4_casa.quotaPerc, prev.goal_1_4_casa.isSelected, () {
+                      boxKeyValue(
+                          "Casa 1-4",
+                          prev.goal_1_4_casa.quota,
+                          prev.goal_1_4_casa.quotaPerc,
+                          prev.goal_1_4_casa.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Casa 1-4"));
                       }),
@@ -218,13 +280,19 @@ class _PrevisionPageState extends State<PrevisionPage> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      boxKeyValue("Casa 2-4", prev.goal_2_4_casa.quota,
-                          prev.goal_2_4_casa.quotaPerc, prev.goal_2_4_casa.isSelected, () {
+                      boxKeyValue(
+                          "Casa 2-4",
+                          prev.goal_2_4_casa.quota,
+                          prev.goal_2_4_casa.quotaPerc,
+                          prev.goal_2_4_casa.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Casa 2-4"));
                       }),
-                      boxKeyValue("Fuori 1-3", prev.goal_1_3_ospite.quota,
-                          prev.goal_1_3_ospite.quotaPerc, prev.goal_1_3_ospite.isSelected, () {
+                      boxKeyValue(
+                          "Fuori 1-3",
+                          prev.goal_1_3_ospite.quota,
+                          prev.goal_1_3_ospite.quotaPerc,
+                          prev.goal_1_3_ospite.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Fuori 1-3"));
                       }),
@@ -232,13 +300,19 @@ class _PrevisionPageState extends State<PrevisionPage> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      boxKeyValue("Fuori 1-4", prev.goal_1_4_ospite.quota,
-                          prev.goal_1_4_ospite.quotaPerc, prev.goal_1_4_ospite.isSelected, () {
+                      boxKeyValue(
+                          "Fuori 1-4",
+                          prev.goal_1_4_ospite.quota,
+                          prev.goal_1_4_ospite.quotaPerc,
+                          prev.goal_1_4_ospite.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Fuori 1-4"));
                       }),
-                      boxKeyValue("Fuori 2-4", prev.goal_2_4_ospite.quota,
-                          prev.goal_2_4_ospite.quotaPerc, prev.goal_2_4_ospite.isSelected, () {
+                      boxKeyValue(
+                          "Fuori 2-4",
+                          prev.goal_2_4_ospite.quota,
+                          prev.goal_2_4_ospite.quotaPerc,
+                          prev.goal_2_4_ospite.isSelected, () {
                         mystore.dispatch(AddPrevisionToCart(
                             prevision: prev, choice: "Fuori 2-4"));
                       }),
@@ -253,8 +327,8 @@ class _PrevisionPageState extends State<PrevisionPage> {
     return Flexible(
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            foregroundColor: isSelected ? Colors.blue :  Colors.white,
-            backgroundColor:  isSelected ? Colors.white : Colors.blue,
+            foregroundColor: isSelected ? Colors.blue : Colors.white,
+            backgroundColor: isSelected ? Colors.white : Colors.blue,
             side: BorderSide(
                 width: 3, color: Colors.blue), //border width and color
             elevation: 3, //elevation of button
